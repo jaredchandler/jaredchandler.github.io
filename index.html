@@ -14,69 +14,99 @@
         padding:10px;
         margin-bottom:5px;
     }
+
+    body {
+
+      background-image: url(chugachpan.jpg);
+background-repeat:no-repeat;
+background-position: top center;
+
+    }
+
+    .banner div{
+       width:100%;
+
+        top:0px;
+        left:0px;
+
+    }
+
+    .bgdiv{
+
+        display:block;
+        position:fixed;
+        opacity: 0.7;
+        background-color: black;
+    }
+
+        .fgdiv{
+          
+        position:fixed;
+        font-family: Arial;
+        letter-spacing: -10px;
+        padding-left:10px;
+        font-size: 120px;
+        line-height: 100px;
+        opacity: 1;
+        color:white;
+        text-shadow: 0px 0px 70px gray  ;
+        padding-top:0px;
+        margin-top:0px;
+     
+
+
+    }
+
+    .links {
+
+          
+                  
+        font-family: Arial;
+        letter-spacing: 0px;
+        padding-left:10px;
+        font-size: 18px;
+        line-height: 20px;
+        opacity: 1;
+        color:white;
+     
+        padding-top:0px;
+        margin-top:0px;
+        background-color: rgba(0,0,0,0.7)
+    }
+
+    a {
+        color:white;
+        text-decoration: none;
+    }
+
+        a:hover {
+        color:black;
+        text-decoration: none;
+    }
 </style>
 </head>
 <body>
-<h1>Recent Work</h1>
+
+<div class="banner">
 
 
-<span>
-<img src="course.png">
-2014: Visualization of Sequence of Courses taken by Students
-</span>
+<div class="fgdiv">
+Jared Chandler
+<div class="links">
+<a href="vis.html">Recent Work</a>
+</div>
 
-<span>
-<img src="viz.png">
-2014: Parallel Coordinates Implementation
-</span>
-
-<span>
-<img src="stm.jpg">
-2014: Artifact from Squarified Tree Map Implementation
-</span>
-
-<span>
-<img src="survivorship.jpg" style="border:1px solid gray;">
-2013: R Simulation demonstrating Survivorship Bias
-</span>
-
-<span>
-<img src="random.jpg"  style="border:1px solid gray;">
-2013: R Simulation of random processes
-</span>
-
-<span>
-<img src="ETL.jpg">
-2013: Visualization of Flat File ASCII Data
-</span>
-
-<span>
-<img src="logan.jpg" >
-2014: Visualization of Taxi Trips Originating at Logan Airport
-</span>
-
-<span>
-<img src="downtown.jpg">
-2014: Visualization of Taxi Trips Originating in Downtown Boston
-</span>
+</div>
 
 
 
-<span>
-<img src="bfa1a.jpg" >
-2008: BFA Thesis Exhibition.
-</span>
+<div class="bgdiv">
 
-<span>
-<img src="bfa4.jpg">
-2008: Process piece from BFA Thesis.
-</span>
 
-<span>
-<img src="avg.png">
-2014: Averaged Image built from Infographics
-</span>
+</div>
 
+
+</div>
 
 </body>
 </html>
