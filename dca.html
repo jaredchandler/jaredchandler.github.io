@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0039)http://jaredchandler.github.io/bos.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>DC Weather Radar</title>
+</head>
+
+<body style="width:100%;background-color:black;">
+<div style="width:98%;">
+<img style="width:98%;" src="https://radar.weather.gov/Conus/Loop/northeast_loop.gif">
+
+<br>
+<img style="width:98%;" src="https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=LWX&brand=horse&num=12&delay=15&type=N0R&frame=0&scale=1.000&noclutter=0&showstorms=0&mapx=400&mapy=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=0&lightning=0&smooth=0&rand=25739612&lat=38.90999985&lon=-77.01999664&label=Washington">
+<img style="width:98%;" src="https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=LWX&brand=horse&num=12&delay=15&type=N0R&frame=0&scale=0.2826086956521739&noclutter=0&showstorms=0&mapx=400&mapy=240&centerx=240.76923076923072&centery=179.8461538461538&transx=-159.23076923076928&transy=-60.15384615384619&showlabels=1&severe=0&rainsnow=0&lightning=0&smooth=0&rand=25739613&lat=38.90999985&lon=-77.01999664&label=Washington">
+
+
+<!-- <img style="width:98%;" src="http://173.13.70.121/-wvhttp-01-/GetOneShot"> -->
+</div>
+<script language="javascript">
+function hideAddressBar()
+{
+  if(!window.location.hash)
+  {
+      if(document.height < window.outerHeight)
+      {
+          document.body.style.height = (window.outerHeight + 50) + 'px';
+      }
+
+      setTimeout( function(){ window.scrollTo(0, 1); }, 50 );
+  }
+}
+
+window.addEventListener("load", function(){ if(!window.pageYOffset){ hideAddressBar(); } } );
+window.addEventListener("orientationchange", hideAddressBar );
+</script>
+
+
+
+</body></html>
