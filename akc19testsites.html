@@ -1,0 +1,99 @@
+
+<html>
+
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.js"></script>
+
+
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+ <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<style>
+
+   body {font-family: sans-serif;}
+</style> 
+<script>
+    function arrayToTable(tableData) {
+        var table = $('<table id="myTable" class="stripe"><thead></thead><tbody></tbody></table>');
+
+        $.fn.child = function(s) {
+            return $(this).children(s)[0];
+        };
+
+        var thead = $(table).children('thead');
+        var tbody = $(table).children('tbody');
+        // console.log(table);
+        // console.log(thead);
+        // console.log(tbody);
+        $(tableData).each(function (i, rowData) {
+               var row = $('<tr></tr>');  
+            
+            $(rowData).each(function (j, cellData) {
+                if (cellData.length == 0){
+
+                    var cData = cellData ;
+                } else {
+                    var cData = cellData ;
+                }
+
+
+                        if(i==0){
+              row.append($('<th>'+cData+'</th>'));
+            } else {
+               row.append($('<td>'+cData+'</td>'));
+            }
+
+
+
+            });
+
+              if(i==0){
+            thead.append(row);
+        } else {
+            if (i != tableData.length -1){
+                    tbody.append(row);
+            }
+        //console.log(i,tableData.length);
+        }
+        });
+        return table;
+    }
+
+
+           
+           
+           
+
+</script>
+
+</head>
+
+<body>
+
+<script>
+        $.ajax({
+        type: "GET",
+        url: "https://opendata.arcgis.com/datasets/e65b8dd86c9f4283831216d0ba374cfd_0.csv?outSR=%7B%22latestWkid%22%3A4326%2C%22wkid%22%3A4326%7D",
+        success: function (data) {
+            $('body').append(arrayToTable(Papa.parse(data).data));
+            //$('#myTable').DataTable();
+            //a = Papa.parse(data).data;
+
+            $('table').DataTable();
+
+        
+    // $('#example').DataTable( {
+    //     data: [a]
+    // } );
+
+
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>
