@@ -33,12 +33,35 @@
     margin-left:10px;
     padding:10px;
     border:1px dotted blue;
+    max-width: 600px;
    }
 
-   .clinic h3 {
+
+   #citylinks a {
+    padding-right:5px;
+   }
+
+   #citylinks {
+
+    width:600px;
+   }
+
+
+/*   .clinic * {
+   
+   display:none;
+   }
+
+    .clinic h3 {
     color: red;
-
+    visibility: visible;
+    display:inline;
    }
+
+    address{
+    display: inline;
+
+   }*/
 
 </style> 
 <script>
@@ -99,8 +122,41 @@
 
 <body>
 
+<div id="citylinks">
+</div>
+
 <script>
 
+
+var template = `<div>
+<h2 class='site'>Name of Site</h2>
+
+
+
+<div>Phone: Phone Number</div>
+<div>Email: Email</div>
+
+<div>Address: </div>
+<div>City:</div>
+<div>Zip: </div>
+
+<div> Hours </div>
+
+<div><span>Monday</span> open hours </div>
+<div><span>Tuesday</span> open hours </div>
+<div><span>Wednesday</span> open hours </div>
+<div><span>Thursday</span> open hours </div>
+<div><span>Friday</span> open hours </div>
+<div><span>Saturday</span> open hours </div>
+<div><span>Sunday</span> open hours </div>
+
+
+
+<div>Notes: </div>
+<div>Costs</div>
+
+</div>
+`;
 
 
 function keys(obj)
@@ -118,12 +174,56 @@ function keys(obj)
     return keys;
 }
 
+function fillTemplate(fields){
+
+function lu(f){
+    if (fields[f] == null || fields[f]==undefined){
+        return '';
+    } else {
+        return fields[f].trim();
+    }
+}
+
+var template = `<div class='clinic'>
+<h3 >`+lu('name_of_collection_site')+`</h3>
+
+
+
+<div>Phone: `+lu('public_contact_number_if_availa')+`</div>
+<div>Email: `+lu('public_e_mail_for_site_informat')+`</div>
+
+<div>Address: `+lu('address')+` `+lu('city')+` AK `+lu('zipcode')+`</div>
+<br/>
+<div><em>Hours</em></div>
+
+<div><span>Monday:</span> `+lu('monday')+` `+lu('hours_open_monday')+`</div>
+<div><span>Tuesday:</span> `+lu('tuesday')+` `+lu('hours_open_tuesday')+`</div>
+<div><span>Wednesday:</span> `+lu('wednesday')+` `+lu('hours_open_wednesday')+`</div>
+<div><span>Thursday:</span> `+lu('thursday')+` `+lu('hours_open_thursday')+`</div>
+<div><span>Friday:</span> `+lu('friday')+` `+lu('hours_open_friday')+`</div>
+<div><span>Saturday:</span> `+lu('saturday')+` `+lu('hours_open_saturday')+`</div>
+<div><span>Sunday:</span> `+lu('sunday')+` `+lu('hours_open_sunday')+`</div>
+<br/>
+<div>Medical Referral Needed: `+lu('medical_referral_needed')+`</div>
+<div>Accepts Voucher: `+lu('AcceptsVoucher')+`</div>
+<br/>
+<div>Notes: `+lu('additional_notes')+`</div>
+<div>Costs: `+lu('costs')+` `+lu('costs_other')+`</div>
+
+</div>
+`;  
+
+
+
+    return template;
+}
+
 function makeClinic(clinic){
     
     var fields = keys(clinic).sort();
     var clinicElement = $('<div class="clinic"><h3>'+clinic['name_of_collection_site']+'</h3></div>');
     var datas = []
-    console.log(fields);
+    //console.log(fields);
     for (var i =0;i<fields.length;i++){
         var fname = fields[i];
         var val = clinic[fname];
@@ -141,12 +241,20 @@ function makeClinic(clinic){
     //datas.appendTo(clinicElement);
     var fl = $('<div />',{html: datas.join("")});
     fl.appendTo(clinicElement);
-    return clinicElement;
+    //clinicElement = $(template);
+    var t = $(fillTemplate(clinic));
+    //t.appendTo(clinicElement);
+    //return clinicElement;
+    return t;
 
 }
 
 
 function makeCity(city,xs){
+    var links = $('<a name="'+city+'" /><a name="'+city.toLowerCase()+'"/>');
+    var link = $('<a href="#'+city.toLowerCase()+'">'+city+'</a>');
+ 
+    link.appendTo($('#citylinks')[0]);
     var cityElement = $('<div class="City"><h2>'+city+'</h2></div>')
     
     console.log(xs);
@@ -157,6 +265,7 @@ function makeCity(city,xs){
         clinicElement.appendTo(cityElement);
 
     }
+    links.appendTo("body");
     cityElement.appendTo("body");
 }
 
@@ -164,7 +273,7 @@ function makeCity(city,xs){
 function clinic(cities,fields){
     var city = fields.city;
     if (city == null){
-        city = ' Blank';
+        city = 'Unknown';
     } else {
 
         city = city.trim();
