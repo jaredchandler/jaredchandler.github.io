@@ -46,6 +46,12 @@
     max-width: 1000px;
    }
 
+   .clinic div span {
+    width:8em;
+    font-size:2.4em;
+    display:inline-block;
+   }
+
 
    #citylinks a {
     margin-right:15px;
@@ -220,13 +226,29 @@ function lu(f){
     }
 }
 
+function email(x){
+    if (x != ''){
+        return '<a href="mailto:'+x+'">'+x+'</a>';
+    } else {
+        return '';
+    }
+}
+
+function tel(x){
+    if (x != ''){
+        return '<a href="tel:'+x+'">'+x+'</a>';
+    } else {
+        return '';
+    }
+}
+
 var template = `<div class='clinic'>
 <h3 >`+lu('name_of_collection_site')+`</h3>
 
 
 
-<div>Phone: `+lu('public_contact_number_if_availa')+`</div>
-<div>Email: `+lu('public_e_mail_for_site_informat')+`</div>
+<div>Phone: `+tel(lu('public_contact_number_if_availa'))+`</div>
+<div>Email: `+email(lu('public_e_mail_for_site_informat'))+`</div>
 
 <div>Address: `+lu('address')+` `+lu('city')+` AK `+lu('zipcode')+`</div>
 <br/>
