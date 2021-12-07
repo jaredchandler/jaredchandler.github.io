@@ -5,16 +5,45 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <title>Untitled Document</title>
+  
+  <style>
+      [data-component="slideshow"] .slide {
+    display: none;
+  }
+
+  [data-component="slideshow"] .slide.active {
+    display: block;
+  }
+  </style>
 </head>
 
 <body style="width:100%;height: 100vh;background-color:black;">
+  
+  div id="slideshow-example" data-component="slideshow">
+        <div role="list">
+          <div class="slide">
+            <img src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_0.gif" alt="">
+          </div>
+          <div class="slide">
+            <img src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_1.gif" alt="">
+          </div>
+          <div class="slide">
+            <img src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_2.gif" alt="">
+          </div>
+        </div>
+      </div>
+  
+  
+<!--   
 <div style="width:99%;height:99vh;">
-<img style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_loop.gif" />
 
+  
+  <!-- <img style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_loop.gif" />
+ -->
 
 
 <!-- <img style="width:98%;" src="http://173.13.70.121/-wvhttp-01-/GetOneShot"> -->
-</div>
+</div> -->
 <script language="javascript">
 function hideAddressBar()
 {
@@ -31,6 +60,36 @@ function hideAddressBar()
 
 window.addEventListener("load", function(){ if(!window.pageYOffset){ hideAddressBar(); } } );
 window.addEventListener("orientationchange", hideAddressBar );
+  
+  
+  var slideshows = document.querySelectorAll('[data-component="slideshow"]');
+  
+  // Apply to all slideshows that you define with the markup wrote
+  slideshows.forEach(initSlideShow);
+
+  function initSlideShow(slideshow) {
+
+    var slides = document.querySelectorAll(`#${slideshow.id} [role="list"] .slide`); // Get an array of slides
+
+    var index = 0, time = 5000;
+    slides[index].classList.add('active');  
+    
+    setInterval( () => {
+      slides[index].classList.remove('active');
+      
+      //Go over each slide incrementing the index
+      index++;
+      
+      // If you go over all slides, restart the index to show the first slide and start again
+      if (index === slides.length) index = 0; 
+      
+      slides[index].classList.add('active');
+
+    }, time);
+  } 
+  
+  
+  
 </script>
 </body>
 </html>
