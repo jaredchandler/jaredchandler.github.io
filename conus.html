@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>Untitled Document</title>
+</head>
+
+<body style="width:100%;background-color:black;">
+<div style="width:98%;">
+<img style="width:98%;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_loop.gif" />
+
+
+
+<!-- <img style="width:98%;" src="http://173.13.70.121/-wvhttp-01-/GetOneShot"> -->
+</div>
+<script language="javascript">
+function hideAddressBar()
+{
+  if(!window.location.hash)
+  {
+      if(document.height < window.outerHeight)
+      {
+          document.body.style.height = (window.outerHeight + 50) + 'px';
+      }
+
+      setTimeout( function(){ window.scrollTo(0, 1); }, 50 );
+  }
+}
+
+window.addEventListener("load", function(){ if(!window.pageYOffset){ hideAddressBar(); } } );
+window.addEventListener("orientationchange", hideAddressBar );
+</script>
+</body>
+</html>
+
