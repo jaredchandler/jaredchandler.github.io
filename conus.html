@@ -1,27 +1,55 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta http-equiv="refresh" content="460" >
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <title>Untitled Document</title>
   
   <style>
-/*       [data-component="slideshow"] .slide {
-    display: none;
-            width:99%;
-    height:99vh;
-  }
 
-  [data-component="slideshow"] .slide.active {
-    display: block;
+    body {
+  margin: 0;
+}
+
+.img-container {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+}
+
+.img-container img {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.img-container img.next {
+  opacity: 1;
+  z-index: 1;
+}
+
+.img-container img.prev {
+  opacity: 1;
+  z-index: 2;
+}
+
+.img-container img.fade-out {
+  opacity: 0;
+  transition: visibility 0s .5s, opacity .5s linear;
+  visibility: hidden;
+}
+
     
-    width:99%;
-    height:99vh;
-  } */
-    
-    
-    .fadein {
+/*.fadein {
     position:absolute;
     top:0px;
     left:50%;
@@ -54,121 +82,138 @@
     100% {opacity: 0;}
 }
 
+
+#crossfade img {
+    position:absolute;
+    left:0;
+    opacity: 1;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;    
+    transition: opacity 1s ease-in-out;
+}
+
 #f1 {
-    background-color: lightblue;
+    
 }
 #f2 {
     -webkit-animation-delay: -4s;
-    background-color: yellow;
+  
 }
 #f3 {
     -webkit-animation-delay: -2s;
-    background-color: lightgreen;
-}
+   
+}*/
 
   </style>
 </head>
 
-<body style="width:100%;height: 100vh;background-color:gray;">
-  
-  <div id="slideshow-example" data-component="slideshow" style="width:99%;height:99vh;">
-        <div role="list" style="width:99%;height:99vh;">
-<!--                 <div class="slide">
-            <img style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_9.gif" alt="">
-          </div>
-                    <div class="slide">
-            <img style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_8.gif" alt="">
-          </div>
-                    <div class="slide">
-            <img style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_7.gif" alt="">
-          </div>
-                    <div class="slide">
-            <img style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_6.gif" alt="">
-          </div>
-                    <div class="slide">
-            <img style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_5.gif" alt="">
-          </div>
-                    <div class="slide">
-            <img style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_4.gif" alt="">
-          </div>
-                    <div class="slide">
-            <img style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_3.gif" alt="">
-          </div> -->
+<body style="width:100%;height: 100vh;background-color:white;">
+
           
-          <div class="fadein">
+
+
+        <div class="img-container" data-slideshow>
+  <img src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_9.gif">
+  <img src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_4.gif">
+  <img src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_0.gif">
+
+</div>
+   <!--        <div class="fadein">
                    
-            <img id="f1" style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS_9.gif" alt="">
+            <img id="f1"  src="https://radar.weather.gov/ridge/lite/CONUS_9.gif" alt="">
          
                     
-            <img id="f2"  style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS_4.gif" alt="">
+            <img id="f2"   src="https://radar.weather.gov/ridge/lite/CONUS_4.gif" alt="">
           
                   
-            <img id="f3" style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS_0.gif" alt="">
+            <img id="f3"  src="https://radar.weather.gov/ridge/lite/CONUS_0.gif" alt="">
         
-          </div>
+
+          </div> -->
     
 
-        </div>
-      </div>
-  
+
   
 <!--   
 <div style="width:99%;height:99vh;">
-
   
   <img style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_loop.gif" />
  
-
-
  <img style="width:98%;" src="http://173.13.70.121/-wvhttp-01-/GetOneShot"> 
 </div> -->
 <script language="javascript">
-function hideAddressBar()
-{
-  if(!window.location.hash)
-  {
-      if(document.height < window.outerHeight)
-      {
-          document.body.style.height = (window.outerHeight + 50) + 'px';
-      }
+class Slideshow {
 
-      setTimeout( function(){ window.scrollTo(0, 1); }, 50 );
+  constructor() {
+    this.initSlides();
+    this.initSlideshow();
   }
+
+  // Set a `data-slide` index on each slide for easier slide control.
+  initSlides() {
+    this.container = $('[data-slideshow]');
+    this.slides = this.container.find('img');
+    this.slides.each((idx, slide) => $(slide).attr('data-slide', idx));
+  }
+
+  // Pseudo-preload images so the slideshow doesn't start before all the images
+  // are available.
+  initSlideshow() {
+    this.imagesLoaded = 0;
+    this.currentIndex = 0;
+    this.setNextSlide();
+    this.slides.each((idx, slide) => {
+      $('<img>').on('load', $.proxy(this.loadImage, this)).attr('src', $(slide).attr('src'));
+    });
+  }
+
+  // When one image has loaded, check to see if all images have loaded, and if
+  // so, start the slideshow.
+  loadImage() {
+    this.imagesLoaded++;
+    if (this.imagesLoaded >= this.slides.length) { this.playSlideshow() }
+  }
+
+  // Start the slideshow.
+  playSlideshow() {
+    this.slideshow = window.setInterval(() => { this.performSlide() }, 3500);
+  }
+
+  // 1. Previous slide is unset.
+  // 2. What was the next slide becomes the previous slide.
+  // 3. New index and appropriate next slide are set.
+  // 4. Fade out action.
+  performSlide() {
+    if (this.prevSlide) { this.prevSlide.removeClass('prev fade-out') }
+
+    this.nextSlide.removeClass('next');
+    this.prevSlide = this.nextSlide;
+    this.prevSlide.addClass('prev');
+
+    this.currentIndex++;
+    if (this.currentIndex >= this.slides.length) { this.currentIndex = 0 }
+
+    this.setNextSlide();
+
+    this.prevSlide.addClass('fade-out');
+  }
+
+  setNextSlide() {
+    this.nextSlide = this.container.find(`[data-slide="${this.currentIndex}"]`).first();
+    this.nextSlide.addClass('next');
+  }
+
 }
 
-window.addEventListener("load", function(){ if(!window.pageYOffset){ hideAddressBar(); } } );
-window.addEventListener("orientationchange", hideAddressBar );
-  
-  
-//   var slideshows = document.querySelectorAll('[data-component="slideshow"]');
-  
-//   // Apply to all slideshows that you define with the markup wrote
-//   slideshows.forEach(initSlideShow);
+$(document).ready(function() {
+  new Slideshow;
+});
 
-//   function initSlideShow(slideshow) {
 
-//     var slides = document.querySelectorAll(`#${slideshow.id} [role="list"] .slide`); // Get an array of slides
-
-//     var index = 0, time = 300;
-//     slides[index].classList.add('active');  
-    
-//     setInterval( () => {
-//       slides[index].classList.remove('active');
-      
-//       //Go over each slide incrementing the index
-//       index++;
-      
-//       // If you go over all slides, restart the index to show the first slide and start again
-//       if (index === slides.length) index = 0; 
-      
-//       slides[index].classList.add('active');
-
-//     }, time);
-//   } 
-  
   
   
 </script>
 </body>
 </html>
-
