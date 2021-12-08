@@ -7,7 +7,7 @@
 <title>Untitled Document</title>
   
   <style>
-      [data-component="slideshow"] .slide {
+/*       [data-component="slideshow"] .slide {
     display: none;
             width:99%;
     height:99vh;
@@ -18,7 +18,54 @@
     
     width:99%;
     height:99vh;
-  }
+  } */
+    
+    
+    .fadein {
+    position:absolute;
+    top:0px;
+    left:50%;
+    margin:auto;
+}
+.fadein img {
+    position:absolute;
+    left:-65px;
+    top:0;
+    -webkit-animation-name: fade;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 6s;
+    animation-name: fade;
+    animation-iteration-count: infinite;
+    animation-duration: 6s;
+}
+
+@-webkit-keyframes fade {
+    0% {opacity: 0;}
+    20% {opacity: 1;}
+    33% {opacity: 1;}
+    53% {opacity: 0;}
+    100% {opacity: 0;}
+}
+@keyframes fade {
+    0% {opacity: 0;}
+    20% {opacity: 1;}
+    33% {opacity: 1;}
+    53% {opacity: 0;}
+    100% {opacity: 0;}
+}
+
+#f1 {
+    background-color: lightblue;
+}
+#f2 {
+    -webkit-animation-delay: -4s;
+    background-color: yellow;
+}
+#f3 {
+    -webkit-animation-delay: -2s;
+    background-color: lightgreen;
+}
+
   </style>
 </head>
 
@@ -48,13 +95,13 @@
             <img style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_3.gif" alt="">
           </div> -->
                     <div class="slide">
-            <img style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_9.gif" alt="">
+            <img id="f1" style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_9.gif" alt="">
           </div>
                     <div class="slide">
-            <img style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_4.gif" alt="">
+            <img id="f2"  style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_4.gif" alt="">
           </div>
                     <div class="slide">
-            <img style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_0.gif" alt="">
+            <img id="f3" style="width:99%;height:99vh;" src="https://radar.weather.gov/ridge/lite/CONUS-LARGE_0.gif" alt="">
           </div>
     
 
@@ -90,31 +137,31 @@ window.addEventListener("load", function(){ if(!window.pageYOffset){ hideAddress
 window.addEventListener("orientationchange", hideAddressBar );
   
   
-  var slideshows = document.querySelectorAll('[data-component="slideshow"]');
+//   var slideshows = document.querySelectorAll('[data-component="slideshow"]');
   
-  // Apply to all slideshows that you define with the markup wrote
-  slideshows.forEach(initSlideShow);
+//   // Apply to all slideshows that you define with the markup wrote
+//   slideshows.forEach(initSlideShow);
 
-  function initSlideShow(slideshow) {
+//   function initSlideShow(slideshow) {
 
-    var slides = document.querySelectorAll(`#${slideshow.id} [role="list"] .slide`); // Get an array of slides
+//     var slides = document.querySelectorAll(`#${slideshow.id} [role="list"] .slide`); // Get an array of slides
 
-    var index = 0, time = 300;
-    slides[index].classList.add('active');  
+//     var index = 0, time = 300;
+//     slides[index].classList.add('active');  
     
-    setInterval( () => {
-      slides[index].classList.remove('active');
+//     setInterval( () => {
+//       slides[index].classList.remove('active');
       
-      //Go over each slide incrementing the index
-      index++;
+//       //Go over each slide incrementing the index
+//       index++;
       
-      // If you go over all slides, restart the index to show the first slide and start again
-      if (index === slides.length) index = 0; 
+//       // If you go over all slides, restart the index to show the first slide and start again
+//       if (index === slides.length) index = 0; 
       
-      slides[index].classList.add('active');
+//       slides[index].classList.add('active');
 
-    }, time);
-  } 
+//     }, time);
+//   } 
   
   
   
