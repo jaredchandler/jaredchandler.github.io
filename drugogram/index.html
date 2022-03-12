@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table{
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        th, td{
+            padding: 10px 20px;
+            border: 1px solid lightgray;
+        }
+
+        td.on{
+            background-color: green;
+        }
+        td.start{
+            background-color: lightgreen;
+        }
+        #data { height:100px;width:800px; }
+    </style>
+
+</head>
+<body id="body">
+
+
+Load Drugogram from text file: <input type="file" id="file-input" ><br><br>
+Format: Start,Stop,Type,Drug, Notes
+<div id="file-content"></div>
+
+    <textarea id="data">
+5/10/2021,5/20/2021,treatment,INH,10mg
+5/10/2021,5/10/2021,vital,Weight,147lbs
+5/15/2021,5/28/2021,treatment,RIF
+4/10/2021,6/10/2021,treatment,EMB,100mg
+7/10/2021,8/10/2021,treatment,EMB,200mg
+3/10/2021,5/10/2021,treatment,RZA
+3/10/2021,3/10/2021,vital,Weight,145lbs
+4/10/2021,5/10/2021,treatment,PAS
+4/27/2021,4/27/2021,lab,Cultures1,Negative
+5/27/2021,5/27/2021,lab,Cultures1,Negative
+5/27/2021,5/27/2021,lab,Cultures2,Positive
+5/27/2021,5/27/2021,vital,Weight,150lbs
+5/27/2021,5/27/2021,note,Notes,Notes about patient go here.
+3/23/2021,3/23/2021,note,Notes,Clinic Visit.
+    </textarea>
+
+<br>
+   <button type="button" id="save" title="Save as text file">Save Drugogram as Txt File</button>
+
+   <button type="button" id="load" title="Load Records">Visualize Drugogram Records</button>
+
+<br><br>
+    <script type="text/javascript">
+        // when document is ready
+        document.getElementById("save").onclick = function() {
+            // when clicked the button
+            var content = document.getElementById('data').value;
+
+
+        function download(filename, text) {
+          var element = document.createElement('a');
+          element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+          element.setAttribute('download', filename);
+
+          element.style.display = 'none';
+          document.body.appendChild(element);
+
+          element.click();
+
+          document.body.removeChild(element);
+        }
+
+        // Start file download.
+        download("drugogram.txt",content);
+
+
+
+        }
+    </script>
+
+
+    <script language="javascript" src="script.js"></script>  
+</body>
+</html>
