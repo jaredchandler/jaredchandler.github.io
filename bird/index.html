@@ -1,0 +1,30 @@
+<html>
+<body>
+  
+  <script>
+    const response = await fetch("https://app.birdweather.com/graphql", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9",
+    "content-type": "application/json",
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"102\", \"Google Chrome\";v=\"102\"",
+    "sec-ch-ua-mobile": "?1",
+    "sec-ch-ua-platform": "\"Android\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "cookie": "_bird_wx_session=mCuNE4Sp0SOxvj7cDQYRVavLrc8zq496hMJgaIdZki0WTIToy1toL3cJ29c3fY8VuZJ2iRYuvKMaI9fzjtnFaNi7eOfJdmi6vSSwuZp6mAQiRljU3sBe4PChFY9AxuQXNhaOPjmxxQEwDzODSwM%2FO30Qc76B1x0nXyQwZRJFmjZak3Z8%2BQExCS0IwIo016c3Y2lzNa%2FAjoBSdSIPesNc%2Fy%2BCjQkN1TZ51VZdmWDB%2BIlu6O0DxayV1yRy6COzdFk4%2BAtrc7EKothIEOE%2B69R0spADPC2r12Vi--zFQaAqkrUB900M5U--V3ZhvS1VTA7bXkVWxVxcKQ%3D%3D",
+    "Referer": "https://app.birdweather.com/stations/286",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": "{\"operationName\":\"TopStationSpecies\",\"variables\":{\"period\":{\"count\":24,\"unit\":\"hour\"},\"center\":{\"lat\":61.12604619010732,\"lon\":-149.7317896038294},\"ne\":{\"lat\":61.15771114848778,\"lon\":-149.5081148296595},\"sw\":{\"lat\":61.09438123172686,\"lon\":-149.95546437799933},\"offset\":0,\"limit\":15},\"query\":\"query TopStationSpecies($ne: InputLocation, $sw: InputLocation, $period: InputDuration, $offset: Int, $limit: Int) {\\n  species: topSpecies(\\n    limit: $limit\\n    offset: $offset\\n    period: $period\\n    ne: $ne\\n    sw: $sw\\n  ) {\\n    speciesId\\n    species {\\n      id\\n      scientificName\\n      commonName\\n      thumbnailUrl\\n      imageUrl\\n      ebirdUrl\\n      wikipediaUrl\\n      wikipediaSummary\\n      color\\n      imageCredit\\n      imageLicense\\n      imageLicenseUrl\\n      __typename\\n    }\\n    count\\n    breakdown {\\n      unlikely\\n      uncertain\\n      veryLikely\\n      almostCertain\\n      __typename\\n    }\\n    averageProbability\\n    __typename\\n  }\\n}\"}",
+  "method": "POST"
+});
+
+const data = await response.json();
+console.log(data);
+
+  </script>
+  
+  </body>
+</html>
